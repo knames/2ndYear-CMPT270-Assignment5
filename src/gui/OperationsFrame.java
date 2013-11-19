@@ -25,7 +25,7 @@ public class OperationsFrame extends JFrame
 	public OperationsFrame()
 	{
 		setTitle("Kennel System");
-		setSize(600, 350);
+		setSize(650, 350);
 		setLocation(400, 200);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		OperationPanel  panel = new OperationPanel();
@@ -72,6 +72,12 @@ public class OperationsFrame extends JFrame
 			addAccessOwnerPanel();
 			add(Box.createVerticalGlue());
 			
+			addAddProblemDogButton();
+			add(Box.createVerticalGlue());
+			
+			addAccessProblemDogButton();
+			add(Box.createVerticalGlue());
+			
 			addStateButton();
 			add(Box.createVerticalGlue());
 			
@@ -114,6 +120,46 @@ public class OperationsFrame extends JFrame
 						public void actionPerformed (ActionEvent event)
 						{
 							new AddOwnerFrame();
+							getTopLevelAncestor().setVisible(false);
+						}
+					});
+		}
+		
+		/** 
+		 * Add a button to create a ProblemDog.
+		 */
+		protected void addAddProblemDogButton()
+		{
+			JButton addProblemDogButton = new JButton("Add ProblemDog");
+			addProblemDogButton.setMaximumSize(addProblemDogButton.getPreferredSize());
+			add(addProblemDogButton);
+			addProblemDogButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+			addProblemDogButton.addActionListener(new
+					ActionListener()
+					{
+						public void actionPerformed (ActionEvent event)
+						{
+							new AddProblemDogFrame();
+							getTopLevelAncestor().setVisible(false);
+						}
+					});
+		}
+		
+		/** 
+		 * Add a button to create a ProblemDog.
+		 */
+		protected void addAccessProblemDogButton()
+		{
+			JButton addAccessProblemDogButton = new JButton("View ProblemDog");
+			addAccessProblemDogButton.setMaximumSize(addAccessProblemDogButton.getPreferredSize());
+			add(addAccessProblemDogButton);
+			addAccessProblemDogButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+			addAccessProblemDogButton.addActionListener(new
+					ActionListener()
+					{
+						public void actionPerformed (ActionEvent event)
+						{
+							new AddProblemDogFrame();
 							getTopLevelAncestor().setVisible(false);
 						}
 					});
@@ -176,6 +222,8 @@ public class OperationsFrame extends JFrame
 						}
 					});
 		}
+		
+		
 
 		
 		/**

@@ -35,7 +35,7 @@ public class AddPetFrame extends JFrame
 		this.ownerName = ownerName;
 		setTitle("Add Pet");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setSize(300, 150);
+		setSize(400, 150);
 		setLocation(400, 400);
 		choicePanel = new ChoicePanel();
 		add(choicePanel);
