@@ -17,9 +17,9 @@ import commands.CreateProblemDogCommand;
 
 
 /**
- * A window to add a problem dog for the owner whose name is passed in as a parameter
- * for the constructor.  The user is given a field to enter the dog's problems,
- * the information for the pet is entered by the user, and the pet is created 
+ * A window to add a problem dog. The user is given a field to 
+ * enter the dog's problems, name, and owner name.
+ * The information for the pet is entered by the user, and the pet is created 
  * and entered into the kennel.
  */
 public class AddProblemDogFrame extends JFrame 
@@ -30,7 +30,7 @@ public class AddProblemDogFrame extends JFrame
 		setTitle("Add Problem Dog");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setSize(500, 350);
-		setLocation(400, 400);
+		setLocation(400, 200);
 		setVisible(true);
 		add(new ProblemDogPanel());
 	}
