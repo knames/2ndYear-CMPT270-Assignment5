@@ -159,7 +159,7 @@ public class OperationsFrame extends JFrame
 					{
 						public void actionPerformed (ActionEvent event)
 						{
-							new AddProblemDogFrame();
+							new ViewProblemDogFrame();
 							getTopLevelAncestor().setVisible(false);
 						}
 					});

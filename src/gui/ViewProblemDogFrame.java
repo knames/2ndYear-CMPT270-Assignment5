@@ -5,30 +5,31 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 
 import containers.KennelAccess;
 
 import entities.ExtendedKennel;
-import entities.Kennel;
-import entities.Pet;
 import entities.ProblemDog;
-import gui.PensFrame.PensPanel.ExitPanel;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
 
+
 /**
- * A window to modify a problem dog.
- * The user is given a field to modify the dog's problems.
- * The information for the pet is entered by the user, and the pet is modified. 
+ * A window to view problem dogs.
+ * The user is given a list of Problem dogs.
+ * They can select one to modify, or return to operations. 
  */
 public class ViewProblemDogFrame extends JFrame
 {
+	/** Initialize the window to display all problem dogs
+	 * which can be modified by clicking their named button
+	 * and a button to return to operations*/
 	public ViewProblemDogFrame()
 	{
 		setTitle("Add Problem Dog");
@@ -39,10 +40,11 @@ public class ViewProblemDogFrame extends JFrame
 		add(new ViewProblemDogPanel());
 	}
 	
-	/** Initialize the panel to display the information for each problem dog
-	 *  also add a button to exit this window and return to operations window. */
+	/** Panel to hold the buttons for the window */
 	private class ViewProblemDogPanel extends JPanel
 	{
+		/** Initialize the panel to display the information for each problem dog
+		 *  also add a button to exit this window and return to operations window. */
 		public ViewProblemDogPanel()
 		{
 			ExtendedKennel kennel = KennelAccess.getKennel();
@@ -50,16 +52,29 @@ public class ViewProblemDogFrame extends JFrame
 			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 			
 			JLabel titleLabel = new JLabel("Problem Dogs");
-			titleLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+			titleLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 			add(titleLabel);
+			
 			
 			for (int i = 1; i <= kennel.problemDogCollection().size(); i++)
 			{
 				add(new PanelForProblemDog(i));
 			}
-			
-			add(new ExitPanel());
+			setAlignmentX(Component.LEFT_ALIGNMENT);
+			JButton exitButton = new JButton("Cancel");
+			add(exitButton);
+			exitButton.addActionListener(new
+				ActionListener()
+				{
+					public void actionPerformed (ActionEvent event)
+					{
+						getTopLevelAncestor().setVisible(false);
+						new OperationsFrame();
+					}
+				});
 		}
+		
+		
 		public static final long serialVersionUID = 1;
 	}
 	
@@ -71,9 +86,8 @@ public class ViewProblemDogFrame extends JFrame
 		
 		int pdogNumber;
 		Component struct1;
-		Pet pet;
+		ProblemDog pet;
 		JButton petButton;
-		Component struct2;
 		
 		/** Constructor for the problem dog panel to place components in the panel
 		 * @param number  the number of the problem dog whos info is being displayed*/
@@ -99,43 +113,23 @@ public class ViewProblemDogFrame extends JFrame
 			petButton = new JButton("" + pet.getName());
 			petButton.addActionListener(new PetAccessListener());
 			add(petButton);
-			struct2 = Box.createHorizontalStrut(STRUT_WIDTH);
-			add(struct2);
 			
-			
+
 		}
 		
 		/** The class to handle the button to access a pet.
-		 * It displays the information for the pet.*/
+		 * It sends the user to the ModifyProblemDogFrame
+		 * where they can edit the dog's problem*/
 		class PetAccessListener implements ActionListener
 		{
 			public void actionPerformed (ActionEvent event)
 			{
-				//GO TO MODIFYPROBLEMDOGFRAME
+				getTopLevelAncestor().setVisible(false);
+				new ModifyProblemDogFrame(pet.getName());
 			}
 		}
-		
-		/** A Panel with a button whose action is to hide the problem
-		 * dog information window and return to operation window*/
-		private class ExitPanel extends JPanel
-		{
-			public ExitPanel()
-			{
-				setAlignmentX(Component.LEFT_ALIGNMENT);
-				JButton exitButton = new JButton("Exit");
-				add(exitButton);
-				exitButton.addActionListener(new
-					ActionListener()
-					{
-						public void actionPerformed (ActionEvent event)
-						{
-							getTopLevelAncestor().setVisible(false);
-							new OperationsFrame();
-						}
-					});
-			}
-			public static final long serialVersionUID = 1;
-		}
+
+		public static final long serialVersionUID = 1;
 	}
 	public static final long serialVersionUID = 1;
 }
