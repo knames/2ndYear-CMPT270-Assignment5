@@ -54,15 +54,13 @@ public class ModifyProblemDogFrame extends JFrame
 			ExtendedKennel kennel = KennelAccess.getKennel();
 			final ProblemDog pdog = kennel.getProblemDog(dog);
 			
-			setLayout(new BorderLayout());
+			JPanel panel = new JPanel();
+			panel.setLayout(new BorderLayout());
 			
 			JLabel titleLabel = new JLabel("Problem Dog:");
 			titleLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 			add(titleLabel);
-			
-			
-			JPanel panel = new JPanel();
-			panel.setLayout(new BorderLayout());
+
 			
 			JPanel namePanel = new JPanel();
 			add(namePanel, BorderLayout.PAGE_START);
@@ -70,12 +68,12 @@ public class ModifyProblemDogFrame extends JFrame
 
          
          JPanel ownerPanel = new JPanel();
-         add(ownerPanel, BorderLayout.PAGE_START);
+         add(ownerPanel, BorderLayout.NORTH);
          ownerPanel.add(new JLabel("Owner: "+ pdog.getOwner().getName()));
 
          
          JPanel problemPanel = new JPanel();
-         add(problemPanel, BorderLayout.CENTER);
+         add(problemPanel, BorderLayout.SOUTH);
          problemPanel.add(new JLabel("Problem with dog"));
          problemArea = new JTextArea(pdog.getProblem(),5,20);
          problemArea.setLineWrap(true);

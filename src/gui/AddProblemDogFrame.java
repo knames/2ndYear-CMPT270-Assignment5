@@ -59,7 +59,7 @@ public class AddProblemDogFrame extends JFrame
 			
 			JPanel namePanel = new JPanel();
 			add(namePanel, BorderLayout.PAGE_START);
-			namePanel.add(new JLabel("Name for the dog"));
+			namePanel.add(new JLabel("Name of the dog"));
          nameField = new JTextField(15);
          namePanel.add(nameField);
          

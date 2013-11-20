@@ -32,7 +32,7 @@ public class ViewProblemDogFrame extends JFrame
 	 * and a button to return to operations*/
 	public ViewProblemDogFrame()
 	{
-		setTitle("Add Problem Dog");
+		setTitle("Problem Dogs");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setSize(500, 350);
 		setLocation(400, 200);
@@ -51,21 +51,24 @@ public class ViewProblemDogFrame extends JFrame
 			
 			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 			
-			JLabel titleLabel = new JLabel("Problem Dogs");
-			titleLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+			JLabel titleLabel = new JLabel("Problem Dogs:");
+			titleLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 			add(titleLabel);
 			
 			
 			for (int i = 1; i <= kennel.problemDogCollection().size(); i++)
 			{
 				add(new PanelForProblemDog(i));
+				add(Box.createVerticalGlue());
 			}
 			setAlignmentX(Component.LEFT_ALIGNMENT);
 			JButton exitButton = new JButton("Cancel");
 			add(exitButton);
+			add(Box.createVerticalGlue());
 			exitButton.addActionListener(new
 				ActionListener()
 				{
+				
 					public void actionPerformed (ActionEvent event)
 					{
 						getTopLevelAncestor().setVisible(false);
@@ -105,7 +108,7 @@ public class ViewProblemDogFrame extends JFrame
 			setAlignmentX(Component.LEFT_ALIGNMENT);
 			setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 			
-			add(Box.createHorizontalStrut(STRUT_WIDTH));//indent
+			add(Box.createHorizontalStrut(STRUT_WIDTH));
 			add(new JLabel("" + pdogNumber + ":"));
 			
 			struct1 = Box.createHorizontalStrut(STRUT_WIDTH);
